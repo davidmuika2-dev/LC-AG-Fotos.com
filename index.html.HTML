@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LC & AG Fotos | Escrevendo histórias para si</title>
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Estilo Principal -->
+    <style>
+        :root {
+            --preto: #000000;
+            --dourado: #D4AF37;
+            --dourado-claro: #F0D76C;
+            --branco: #FFFFFF;
+            --cinza-escuro: #222222;
+            --cinza-claro: #E5E5E5;
+            --sombra-dourada: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cabeçalho */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 1rem 0;
+            transition: 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--preto);
+        }
+
+        .logo-text h2 {
+            font-size: 1.5rem;
+            color: var(--dourado);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--cinza-claro);
+            font-style: italic;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            font-size: 1rem;
+            color: var(--branco);
+            font-weight: 400;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dourado);
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--dourado);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--dourado);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            background: radial-gradient(circle at top, rgba(34, 34, 34, 0.8) 0%, rgba(0, 0, 0, 1) 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 90%;
+            background: radial-gradient(ellipse, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translateX(20%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--dourado);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--cinza-claro);
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+            color: var(--preto);
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: var(--sombra-dourada);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+        }
+
+        .hero-img {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 3px solid var(--dourado);
+            box-shadow: var(--sombra-dourada);
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7));
+        }
+
+        /* Seções Comuns */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--dourado);
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--dourado);
+        }
+
+        /* Serviços Casamento */
+        .casamento {
+            background: var(--cinza-escuro);
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .servico-card {
+            background: var(--preto);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: 0.3s ease;
+        }
+
+        .servico-card:hover {
+            border-color: var(--dourado);
+            box-shadow: var(--sombra-dourada);
+            transform: translateY(-5px);
+        }
+
+        .servico-card h3 {
+            font-size: 1.5rem;
+            color: var(--dourado);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .servico-card ul li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .servico-card ul li i {
+            color: var(--dourado);
+        }
+
+        .destaque {
+            margin-top: 2rem;
+            padding: 1.2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--dourado);
+            border-radius: 4px;
+            color: var(--dourado-claro);
+            font-weight: 500;
+        }
+
+        /* Aniversário e Baptismo */
+        .aniversario-baptismo {
+            background: var(--preto);
+        }
+
+        .dois-colunas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .coluna {
+            background: var(--cinza-escuro);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .coluna h3 {
+            font-size: 1.4rem;
+            color: var(--dourado);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .coluna ul li {
+            padding: 0.7rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .coluna ul li i {
+            color: var(--dourado);
+        }
+
+        /* Diferenciais */
+        .diferenciais {
+            background: var(--cinza-escuro);
+        }
+
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .diferencial-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--preto);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: 0.3s ease;
+        }
+
+        .diferencial-card:hover {
+            border-color: var(--dourado);
+            transform: translateY(-5px);
+        }
+
+        .diferencial-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--preto);
+            margin: 0 auto 1.5rem;
+        }
+
+        .diferencial-card h3 {
+            font-size: 1.2rem;
+            color: var(--dourado);
+            margin-bottom: 0.8rem;
+        }
+
+        /* Serviços Visuais */
+        .servicos-visual {
+            background: var(--preto);
+        }
+
+        .servicos-visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .servico-visual-card {
+            background: var(--cinza-escuro);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .servico-visual-card:hover {
+            border-color: var(--dourado);
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-dourada);
+        }
+
+        .servico-visual-img {
+            height: 180px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .servico-visual-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .servico-visual-card h3 {
+            color: var(--dourado);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .servico-visual-card p {
+            color: var(--cinza-claro);
+            font-size: 0.95rem;
+        }
+
+        /* Contacto */
+        .contacto {
+            background: var(--cinza-escuro);
+        }
+
+        .contacto-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: var(--preto);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--dourado);
+            transition: 0.3s ease;
+        }
+
+        .contacto-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .contacto-item i {
+            font-size: 1.5rem;
+            color: var(--dourado);
+        }
+
+        .contacto-item a {
+            font-size: 1.1rem;
+            color: var(--branco);
+            transition: 0.3s ease;
+        }
+
+        .contacto-item a:hover {
+            color: var(--dourado);
+        }
+
+        .frase-final {
+            margin-top: 2.5rem;
+            font-size: 1.3rem;
+            color: var(--dourado-claro);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Botão WhatsApp Flutuante */
+        .whatsapp-fixo {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            background: #25D366;
+            color: var(--branco);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: 0.3s ease;
+        }
+
+        .whatsapp-fixo:hover {
+            transform: scale(1.1);
+            color: var(--branco);
+        }
+
+        /* Rodapé */
+        footer {
+            background: var(--preto);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo .logo-text h2 {
+            font-size: 1.3rem;
+        }
+
+        .footer-contacto h4 {
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-contacto p {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.6rem;
+            color: var(--cinza-claro);
+        }
+
+        .footer-contacto p i {
+            color: var(--dourado);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--cinza-claro);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.98);
+                padding: 1.5rem 0;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: 0.3s ease;
+            }
+
+            nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .whatsapp-fixo {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-img">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <div class="logo-text">
+                    <h2>LC & AG Fotos</h2>
+                    <p>Escrevendo histórias para si</p>
+                </div>
+            </a>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav id="navMenu">
+                <ul>
+                    <li><a href="#início">Início</a></li>
+                    <li><a href="#serviços">Serviços</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="início">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>LC & AG Fotos</h1>
+                <p>Escrevendo histórias para si — registando os momentos mais especiais da sua vida com elegância e qualidade inigualável.</p>
+                <a href="https://wa.me/244930049329" target="_blank" class="btn">
+                    <i class="fab fa-whatsapp"></i> Solicitar Orçamento
+                </a>
+            </div>
+            <div class="hero-img">
+                <img src="casamento-destaque.jpg" alt="Casamento - LC & AG Fotos" loading="lazy" onerror="this.style.border='2px dashed red'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="serviços">
+        <!-- Casamento -->
+        <div class="casamento">
+            <div class="container">
+                <h2 class="section-title">🤍 Cobertura de Casamento</h2>
+                <p style="text-align:center; max-width:700px; margin:0 auto 2.5rem; color:var(--cinza-claro);">Cobertura completa do seu momento especial: chá de panela, pedido de casamento, casamento civil e religioso.</p>
+                
+                <div class="servicos-grid">
+                    <div class="servico-card">
+                        <h3><i class="fas fa-images"></i> Álbuns Digitais</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Álbum digital no tamanho de A3</li>
+                            <li><i class="fas fa-check"></i> Álbum digital no tamanho de A4</li>
+                        </ul>
+                    </div>
+                    <div class="servico-card">
+                        <h3><i class="fas fa-cube"></i> Álbuns 3D</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Álbum 3D no tamanho de A3</li>
+                            <li><i class="fas fa-check"></i> Álbum 3D no tamanho de A4</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="destaque">
+                    🎁 Todos os pacotes incluem <strong>quadro personalizado</strong> no tamanho à escolha do casal.
+                </div>
+            </div>
+        </div>
+
+        <!-- Aniversário e Baptismo -->
+        <div class="aniversario-baptismo">
+            <div class="container">
+                <h2 class="section-title">🎂 Aniversário e Baptismo</h2>
+                
+                <div class="dois-colunas">
+                    <div class="coluna">
+                        <h3>Álbuns Digitais</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Tamanho grande</li>
+                            <li><i class="fas fa-check"></i> Tamanho médio</li>
+                            <li><i class="fas fa-check"></i> Tamanho pequeno</li>
+                        </ul>
+                    </div>
+                    <div class="coluna">
+                        <h3>Álbuns 3D</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Tamanho grande</li>
+                            <li><i class="fas fa-check"></i> Tamanho médio</li>
+                            <li><i class="fas fa-check"></i> Tamanho pequeno</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="destaque" style="max-width: 500px; margin: 2rem auto 0;">
+                    🎁 Direito a um quadro personalizado.
+                </div>
+            </div>
+        </div>
+
+        <!-- Diferenciais -->
+        <div class="diferenciais">
+            <div class="container">
+                <h2 class="section-title">Por Que Escolher a LC & AG?</h2>
+                
+                <div class="diferenciais-grid">
+                    <div class="diferencial-card">
+                        <div class="diferencial-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Defesa e Outorga</h3>
+                        <p>Garantia de qualidade e compromisso com o seu evento.</p>
+                    </div>
+                    <div class="diferencial-card">
+                        <div class="diferencial-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h3>Preferência do Cliente</h3>
+                        <p>O seu gosto e necessidades vêm sempre em primeiro lugar.</p>
+                    </div>
+                    <div class="diferencial-card">
+                        <div class="diferencial-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Momentos Eternos</h3>
+                        <p>Registamos momentos que duram para sempre!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Serviços com Imagens Ilustrativas -->
+        <div class="servicos-visual">
+            <div class="container">
+                <h2 class="section-title">📸 Nossos Serviços</h2>
+                
+                <div class="servicos-visual-grid">
+                    <div class="servico-visual-card">
+                        <div class="servico-visual-img">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=250&fit=crop" alt="Fotografia de Casamento" loading="lazy">
+                        </div>
+                        <h3><i class="fas fa-ring" style="color:var(--dourado)"></i> Casamento</h3>
+                        <p>Cobertura completa de todos os momentos do seu casamento</p>
+                    </div>
+                    <div class="servico-visual-card">
+                        <div class="servico-visual-img">
+                            <img src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=250&fit=crop" alt="Fotografia de Aniversário" loading="lazy">
+                        </div>
+                        <h3><i class="fas fa-birthday-cake" style="color:var(--dourado)"></i> Aniversário</h3>
+                        <p>Registre a alegria de mais um ano de vida com fotos incríveis</p>
+                    </div>
+                    <div class="servico-visual-card">
+                        <div class="servico-visual-img">
+                            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&h=250&fit=crop" alt="Fotografia de Baptismo" loading="lazy">
+                        </div>
+                        <h3><i class="fas fa-dove" style="color:var(--dourado)"></i> Baptismo</h3>
+                        <p>Um momento sagrado que merece ser eternizado</p>
+                    </div>
+                    <div class="servico-visual-card">
+                        <div class="servico-visual-img">
+                            <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=400&h=250&fit=crop" alt="Álbuns e Quadros" loading="lazy">
+                        </div>
+                        <h3><i class="fas fa-image" style="color:var(--dourado)"></i> Álbuns & Quadros</h3>
+                        <p>Álbuns digitais e 3D personalizados com quadro grátis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contacto" id="contacto">
+        <div class="container">
+            <h2 class="section-title">📞 Fale Conosco</h2>
+            
+            <div class="contacto-content">
+                <div class="contacto-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/244930049329" target="_blank">WhatsApp: 930049329</a>
+                </div>
+                <div class="contacto-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/244928414850" target="_blank">WhatsApp: 928414850</a>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+244930049329">Telefone: 930049329</a>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+244928414850">Telefone: 928414850</a>
+                </div>
+
+                <p class="frase-final">Faça já a sua marcação e venha viver e marcar uma história!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botão WhatsApp Fixo -->
+    <a href="https://wa.me/244930049329" target="_blank" class="whatsapp-fixo" title="Agendar via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">
+                        <div class="logo-img">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h2>LC & AG Fotos</h2>
+                            <p>Escrevendo histórias para si</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="footer-contacto">
+                    <h4>Contactos</h4>
+                    <p><i class="fab fa-whatsapp"></i> 930049329</p>
+                    <p><i class="fab fa-whatsapp"></i> 928414850</p>
+                    <p><i class="fas fa-phone"></i> 930049329</p>
+                    <p><i class="fas fa-phone"></i> 928414850</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 LC & AG Fotos — Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Menu Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar num link
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Animação ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.servico-card, .coluna, .diferencial-card, .servico-visual-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+<div class="logo-img" style="background: transparent; border-radius: 0; width: auto; height: auto; padding: 0;">
+    <img src="logo-lcag.jpg" alt="LC & AG Fotos" style="width: 160px; height: auto; object-fit: contain; border-radius: 0; display: block;">
+</div>
